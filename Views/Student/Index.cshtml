@@ -1,0 +1,75 @@
+﻿@model IEnumerable<StudentSmer3.Models.Student>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+<form>
+    <input type="search" name="filter"/>
+    <button type="submit">Pretraga</button>
+</form>
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Ime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Prezime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.JMBG)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BrojIndeksa)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DatumRodjenja)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Smer.Naziv)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Prezime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.JMBG)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BrojIndeksa)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DatumRodjenja)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Smer.Naziv)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.StudentID">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.StudentID">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.StudentID" onclick="return potvrda() ">Delete</a>
+
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+<script>
+    function potvrda(){
+        return confirm('Da li ste sigurni da želite da obrišete?')
+    }
+</script>
